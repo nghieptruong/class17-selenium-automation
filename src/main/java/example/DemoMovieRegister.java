@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.UUID;
+
 public class DemoMovieRegister {
     public static void main(String[] args) throws InterruptedException {
         //        //Start chrome browser
@@ -23,10 +25,13 @@ public class DemoMovieRegister {
         //Step 1: Enter account
         //By va WebElement --> tuong ung locator tren trang web html
         //Tim element Tai khoan textbox
+        String account = UUID.randomUUID().toString();
+        System.out.println(account);
+
         By byTxtAccount = By.id("taiKhoan");
         WebElement txtAccount = chromeDriver.findElement(byTxtAccount);
         //Go text vao Tai khoan textbox
-        txtAccount.sendKeys("JohnJohn01");
+        txtAccount.sendKeys(account);
 
         //Step 2: Enter password
         By byTxtPassword = By.name("matKhau");
@@ -37,6 +42,22 @@ public class DemoMovieRegister {
         By byTxtConfirmPassword = By.xpath("//input[@id='confirmPassWord']");
         WebElement txtConfirmPassword = chromeDriver.findElement(byTxtConfirmPassword);
         txtConfirmPassword.sendKeys("123456");
+
+        //Step 4: Enter full name
+        By byTxtFullname = By.id("hoTen");
+        WebElement txtFullname = chromeDriver.findElement(byTxtFullname);
+        txtFullname.sendKeys("John John");
+
+        //Step 5: Enter email
+        String email = account + "@example.com";
+        By byTxtEmail = By.id("email");
+        WebElement txtEmail = chromeDriver.findElement(byTxtEmail);
+        txtEmail.sendKeys(email);
+
+        //Step 6: Click register
+        By byBtnRegister = By.xpath("//button[.='Đăng ký']");
+        WebElement btnRegister = chromeDriver.findElement(byBtnRegister);
+        btnRegister.click();
 
         Thread.sleep(3000);
 
